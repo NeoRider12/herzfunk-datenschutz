@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Datenschutzerklärung – HerzFunk</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body { font-family: -apple-system, Arial, sans-serif; max-width: 720px; margin: 0 auto; padding: 24px; line-height: 1.6; color: #222; }
+  h1 { font-size: 1.6em; }
+  h2 { font-size: 1.2em; margin-top: 2em; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+  .platzhalter { background: #fff3cd; padding: 2px 4px; border-radius: 3px; }
+  footer { margin-top: 3em; font-size: 0.85em; color: #777; }
+</style>
+</head>
+<body>
+
+<h1>Datenschutzerklärung – HerzFunk</h1>
+<p>Stand: 07.09.2026</p>
+
+<h2>1. Verantwortlicher</h2>
+<p>
+Verantwortlich für die Datenverarbeitung im Sinne der DSGVO ist:<br>
+Pierre Kemna<br>
+Schlossblick 25<br>
+49186 Bad Iburg<br>
+E-Mail: herzfunk-app@gmx.de</span>
+</p>
+
+<h2>2. Welche Daten HerzFunk verarbeitet</h2>
+<p>HerzFunk ist eine App, mit der zwei gekoppelte Geräte sich gegenseitig ein "Herz"-Signal und optional eine kurze Textnachricht senden können. Dabei werden folgende Daten verarbeitet:</p>
+<ul>
+  <li><strong>Kopplungscode:</strong> Beim ersten Start erzeugt die App einen zufälligen Kopplungscode, der zusammen mit einer Geräte-Kennung in einer Firebase-Cloud-Datenbank (Cloud Firestore) gespeichert wird, damit zwei Geräte einander zugeordnet werden können.</li>
+  <li><strong>Geräte-Kennung (Device-ID):</strong> Wird gespeichert, damit der Kopplungscode nach einer Neuinstallation automatisch wiederhergestellt werden kann.</li>
+  <li><strong>Push-Benachrichtigungs-Token (Firebase Cloud Messaging):</strong> Wird benötigt, um das "Herz"-Signal in Echtzeit an das gekoppelte Gerät zuzustellen.</li>
+  <li><strong>Nachrichtentext:</strong> Falls im Premium-Tarif sowie in der Testversion das Textfeld genutzt wird, wird der eingegebene Text über Firestore an das gekoppelte Gerät übermittelt und dort angezeigt.</li>
+  <li><strong>Kaufinformationen (Abo):</strong> Für das wöchentliche Premium-Abo wird Google Play Billing genutzt. Zahlungsdaten und Kaufabwicklung laufen ausschließlich über Google; HerzFunk selbst erhält nur den Status, ob ein aktives Abo besteht.</li>
+</ul>
+<p>Es werden keine Standortdaten, keine Kontakte, keine Werbe-ID und keine Analyse-/Tracking-Dienste zu Werbezwecken verarbeitet.</p>
+
+<h2>3. Zweck und Rechtsgrundlage der Verarbeitung</h2>
+<p>
+Die Verarbeitung erfolgt zur Erfüllung der Kernfunktion der App – der Kopplung zweier Geräte und der Zustellung von Herz-Signalen bzw. Nachrichten (Art. 6 Abs. 1 lit. b DSGVO, Vertragserfüllung). Die Abwicklung des Premium-Abos erfolgt ebenfalls zur Vertragserfüllung.
+</p>
+
+<h2>4. Eingesetzte Dienstleister (Auftragsverarbeiter)</h2>
+<ul>
+  <li><strong>Google Firebase</strong> (Google Ireland Limited bzw. Google LLC) – für Cloud Firestore (Datenbank) und Firebase Cloud Messaging (Push-Benachrichtigungen). Weitere Informationen: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a></li>
+  <li><strong>Google Play Billing</strong> – für die Abwicklung des Premium-Abos. Es gilt zusätzlich die Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></li>
+</ul>
+
+<h2>5. Speicherdauer</h2>
+<p>
+Kopplungscode und Geräte-Kennung werden gespeichert, solange die App genutzt wird bzw. bis der Nutzer die Kopplung aktiv aufhebt. Nachrichtentexte werden unmittelbar nach Zustellung, spätestens nach 3 Tagen automatisch gelöscht.
+</p>
+
+<h2>6. Rechte der Nutzer</h2>
+<p>
+Nutzer haben nach der DSGVO das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch. Anfragen dazu bitte an die oben genannte E-Mail-Adresse. Es besteht außerdem ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde.
+</p>
+
+<h2>7. Kontakt</h2>
+<p>Bei Fragen zum Datenschutz: herzfunk-app@gmx.de</p>
+
+<footer>
+Diese Datenschutzerklärung ist ein Entwurf und ersetzt keine rechtliche Beratung. Bitte die markierten Platzhalter ausfüllen und im Zweifel juristisch prüfen lassen.
+</footer>
+
+</body>
+</html>
