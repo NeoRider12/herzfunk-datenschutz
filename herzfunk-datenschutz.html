@@ -8,58 +8,82 @@
   body { font-family: -apple-system, Arial, sans-serif; max-width: 720px; margin: 0 auto; padding: 24px; line-height: 1.6; color: #222; }
   h1 { font-size: 1.6em; }
   h2 { font-size: 1.2em; margin-top: 2em; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
-  .platzhalter { background: #fff3cd; padding: 2px 4px; border-radius: 3px; }
+  ul { padding-left: 1.2em; }
+  li { margin-bottom: 0.5em; }
   footer { margin-top: 3em; font-size: 0.85em; color: #777; }
 </style>
 </head>
 <body>
 
 <h1>Datenschutzerklärung – HerzFunk</h1>
-<p>Stand: 07.09.2026</p>
+<p>Stand: 07.10.2026</p>
 
 <h2>1. Verantwortlicher</h2>
-<p>
-Verantwortlich für die Datenverarbeitung im Sinne der DSGVO ist:<br>
-Pierre Kemna<br>
+<p>Verantwortlich für die Datenverarbeitung im Sinne der DSGVO ist:</p>
+<p>Pierre Kemna<br>
 Schlossblick 25<br>
 49186 Bad Iburg<br>
-E-Mail: herzfunk-app@gmx.de</span>
-</p>
+E-Mail: <a href="mailto:herzfunk-app@gmx.de">herzfunk-app@gmx.de</a></p>
 
-<h2>2. Welche Daten HerzFunk verarbeitet</h2>
-<p>HerzFunk ist eine App, mit der zwei gekoppelte Geräte sich gegenseitig ein "Herz"-Signal und optional eine kurze Textnachricht senden können. Dabei werden folgende Daten verarbeitet:</p>
+<h2>2. Überblick</h2>
+<p>HerzFunk ist eine App, mit der zwei gekoppelte Geräte sich gegenseitig ein „Herz“-Signal und optional eine kurze Textnachricht (höchstens 40 Zeichen) senden können. Es gibt kein Nutzerkonto: HerzFunk fragt weder Namen noch E-Mail-Adresse oder Telefonnummer ab.</p>
+
+<h2>3. Welche Daten verarbeitet werden</h2>
 <ul>
-  <li><strong>Kopplungscode:</strong> Beim ersten Start erzeugt die App einen zufälligen Kopplungscode, der zusammen mit einer Geräte-Kennung in einer Firebase-Cloud-Datenbank (Cloud Firestore) gespeichert wird, damit zwei Geräte einander zugeordnet werden können.</li>
-  <li><strong>Geräte-Kennung (Device-ID):</strong> Wird gespeichert, damit der Kopplungscode nach einer Neuinstallation automatisch wiederhergestellt werden kann.</li>
-  <li><strong>Push-Benachrichtigungs-Token (Firebase Cloud Messaging):</strong> Wird benötigt, um das "Herz"-Signal in Echtzeit an das gekoppelte Gerät zuzustellen.</li>
-  <li><strong>Nachrichtentext:</strong> Falls im Premium-Tarif sowie in der Testversion das Textfeld genutzt wird, wird der eingegebene Text über Firestore an das gekoppelte Gerät übermittelt und dort angezeigt.</li>
-  <li><strong>Kaufinformationen (Abo):</strong> Für das wöchentliche Premium-Abo wird Google Play Billing genutzt. Zahlungsdaten und Kaufabwicklung laufen ausschließlich über Google; HerzFunk selbst erhält nur den Status, ob ein aktives Abo besteht.</li>
+  <li><strong>Geräte-Kennung:</strong> Eine von Android bereitgestellte, für HerzFunk spezifische Kennung (Android-ID). Sie dient dazu, zwei Geräte einander zuzuordnen, eine Kopplung nach einer Neuinstallation automatisch wiederherzustellen und Tageslimits einzuhalten.</li>
+  <li><strong>Kopplungscode:</strong> Eine zufällige 8-stellige Nummer. Sie wird zusammen mit den Geräte-Kennungen der beiden gekoppelten Geräte und den Zeitpunkten der Kopplung in einer Cloud-Datenbank (Google Firebase Cloud Firestore) gespeichert.</li>
+  <li><strong>Anonyme Anmeldung (Firebase Authentication):</strong> Beim Start meldet sich die App ohne persönliche Angaben anonym an und erhält eine zufällige Nutzer-ID. Sie schützt die Datenbank vor fremden Zugriffen und stellt sicher, dass nur die gekoppelten Geräte eine Kopplung für ein neues Handy freigeben können.</li>
+  <li><strong>Herz-Signale:</strong> Zu jedem gesendeten Herz werden die Geräte-Kennung des Absenders, der Zeitpunkt, das gewählte Herz-Design und – falls eingegeben – die Nachricht gespeichert, damit das gekoppelte Gerät das Herz anzeigen kann, auch wenn es gerade nicht erreichbar ist. Die Nachricht wird Ende-zu-Ende-verschlüsselt gespeichert (siehe Abschnitt 7).</li>
+  <li><strong>Öffentliche Schlüssel:</strong> Für die Ende-zu-Ende-Verschlüsselung erzeugt jedes Gerät ein Schlüsselpaar. Nur der öffentliche Schlüssel wird beim Kopplungscode gespeichert; der private Schlüssel verlässt das Gerät nie.</li>
+  <li><strong>Zähler:</strong> Die Anzahl der pro Tag gesendeten und angezeigten Herzen, der neu erstellten Kopplungscodes und der Freigaben für ein neues Handy. Sie dienen der Einhaltung der Tageslimits und dem Schutz vor Missbrauch.</li>
+  <li><strong>App-Integritätsprüfung (Firebase App Check mit Google Play Integrity):</strong> Die App lässt von Google bestätigen, dass Anfragen aus der unveränderten, über Google Play installierten HerzFunk-App stammen. Google verarbeitet dafür Informationen über die App, die Installation über Google Play und das Gerät. HerzFunk erhält nur das Prüfergebnis.</li>
+  <li><strong>Kaufinformationen (Abo):</strong> Für das Premium-Abo wird Google Play Billing genutzt. Zahlungsdaten und die gesamte Kaufabwicklung laufen ausschließlich über Google; HerzFunk erhält nur die Information, ob ein aktives Abo besteht.</li>
+  <li><strong>Nur auf dem Gerät gespeichert:</strong> Einstellungen (z. B. gewähltes Design, Favoriten, Stummschaltung), die am jeweiligen Tag empfangenen Herzen einschließlich Nachrichtentext für die Funktion „Rückblick“ sowie eine Statistik, welche Designs häufig gesendet werden. Diese Daten werden nicht an HerzFunk übertragen.</li>
 </ul>
-<p>Es werden keine Standortdaten, keine Kontakte, keine Werbe-ID und keine Analyse-/Tracking-Dienste zu Werbezwecken verarbeitet.</p>
+<p>Es werden keine Standortdaten, keine Kontakte, keine Werbe-ID und keine Analyse- oder Tracking-Dienste verarbeitet.</p>
 
-<h2>3. Zweck und Rechtsgrundlage der Verarbeitung</h2>
-<p>
-Die Verarbeitung erfolgt zur Erfüllung der Kernfunktion der App – der Kopplung zweier Geräte und der Zustellung von Herz-Signalen bzw. Nachrichten (Art. 6 Abs. 1 lit. b DSGVO, Vertragserfüllung). Die Abwicklung des Premium-Abos erfolgt ebenfalls zur Vertragserfüllung.
-</p>
-
-<h2>4. Eingesetzte Dienstleister (Auftragsverarbeiter)</h2>
+<h2>4. Zweck und Rechtsgrundlage</h2>
 <ul>
-  <li><strong>Google Firebase</strong> (Google Ireland Limited bzw. Google LLC) – für Cloud Firestore (Datenbank) und Firebase Cloud Messaging (Push-Benachrichtigungen). Weitere Informationen: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a></li>
-  <li><strong>Google Play Billing</strong> – für die Abwicklung des Premium-Abos. Es gilt zusätzlich die Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></li>
+  <li>Kopplung der Geräte, Zustellung von Herzen und Nachrichten sowie Abwicklung des Premium-Abos: Erfüllung des Nutzungsvertrags (Art. 6 Abs. 1 lit. b DSGVO).</li>
+  <li>Anonyme Anmeldung, Tageslimits, Zähler und App-Integritätsprüfung: berechtigtes Interesse an einem sicheren, missbrauchsgeschützten und wirtschaftlich tragbaren Betrieb der App (Art. 6 Abs. 1 lit. f DSGVO).</li>
+  <li>Der Zugriff auf die Geräte-Kennung und das Speichern von Daten auf dem Gerät sind für die vom Nutzer gewünschte Funktion unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG).</li>
 </ul>
 
-<h2>5. Speicherdauer</h2>
-<p>
-Kopplungscode und Geräte-Kennung werden gespeichert, solange die App genutzt wird bzw. bis der Nutzer die Kopplung aktiv aufhebt. Nachrichtentexte werden unmittelbar nach Zustellung, spätestens nach 4 Tagen automatisch gelöscht.
-</p>
+<h2>5. Eingesetzte Dienstleister</h2>
+<ul>
+  <li><strong>Google Firebase</strong> (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) – Cloud Firestore (Datenbank), Firebase Authentication (anonyme Anmeldung) und Firebase App Check. Google verarbeitet die Daten als Auftragsverarbeiter. Weitere Informationen: <a href="https://firebase.google.com/support/privacy">firebase.google.com/support/privacy</a></li>
+  <li><strong>Google Play</strong> – Abwicklung des Premium-Abos (Google Play Billing) und App-Integritätsprüfung (Play Integrity). Es gilt die Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy">policies.google.com/privacy</a></li>
+</ul>
+<p>Dabei kann eine Übermittlung an die Google LLC in den USA nicht ausgeschlossen werden. Google LLC ist nach dem EU-US Data Privacy Framework zertifiziert; ergänzend gelten die Standardvertragsklauseln der EU-Kommission.</p>
 
-<h2>6. Rechte der Nutzer</h2>
-<p>
-Nutzer haben nach der DSGVO das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch. Anfragen dazu bitte an die oben genannte E-Mail-Adresse. Es besteht außerdem ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde.
-</p>
+<h2>6. Speicherdauer</h2>
+<ul>
+  <li><strong>Herz-Signale einschließlich Nachrichtentext:</strong> werden 3 Tage nach dem Senden automatisch gelöscht. Die Löschung erfolgt technisch bedingt meist innerhalb weiterer 24 Stunden, also spätestens nach 4 Tagen.</li>
+  <li><strong>Tageszähler:</strong> werden nach 3 Tagen automatisch gelöscht.</li>
+  <li><strong>Nicht genutzte Kopplungscodes:</strong> werden nach 48 Stunden automatisch gelöscht.</li>
+  <li><strong>Bestehende Kopplungen und Geräte-Zuordnungen:</strong> bleiben gespeichert, solange die App genutzt wird, und werden automatisch gelöscht, wenn sie 3 Monate lang nicht genutzt wurden.</li>
+  <li><strong>Daten auf dem Gerät:</strong> bleiben bis zur Deinstallation der App oder bis zum Löschen der App-Daten; die Rückblick-Liste wird täglich neu begonnen.</li>
+</ul>
+<p>Auf Wunsch löschen wir die zu einer Kopplung gespeicherten Daten auch vorzeitig. Bitte dazu eine E-Mail mit dem Kopplungscode an die oben genannte Adresse senden.</p>
 
-<h2>7. Kontakt</h2>
-<p>Bei Fragen zum Datenschutz: herzfunk-app@gmx.de</p>
+<h2>7. Sicherheit</h2>
+<p>Alle Daten werden verschlüsselt übertragen (TLS) und bei Google verschlüsselt gespeichert. Der Zugriff auf die Datenbank ist durch Sicherheitsregeln so beschränkt, dass Kopplungen nur mit dem jeweiligen Code erreichbar sind und nicht aufgelistet werden können.</p>
+<p><strong>Nachrichten sind Ende-zu-Ende-verschlüsselt:</strong> Sie werden auf dem sendenden Gerät verschlüsselt und können nur von den beiden gekoppelten Geräten entschlüsselt werden. Weder der Betreiber noch Google kann den Inhalt lesen. Nicht verschlüsselt sind die Angaben, die für die Zustellung nötig sind (Absender-Kennung, Zeitpunkt, Herz-Design).</p>
+
+<h2>8. Rechte der Nutzer</h2>
+<p>Nutzer haben nach der DSGVO das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch gegen Verarbeitungen auf Grundlage berechtigter Interessen. Anfragen dazu bitte an die oben genannte E-Mail-Adresse, möglichst mit Kopplungscode, damit die Daten zugeordnet werden können.</p>
+<p>Außerdem besteht ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde, zum Beispiel bei der Landesbeauftragten für den Datenschutz Niedersachsen.</p>
+
+<h2>9. Kinder</h2>
+<p>HerzFunk richtet sich an Personen ab 13 Jahren.</p>
+
+<h2>10. Änderungen</h2>
+<p>Diese Datenschutzerklärung wird angepasst, wenn sich die App oder die rechtlichen Vorgaben ändern. Es gilt jeweils die hier veröffentlichte Fassung.</p>
+
+<h2>11. Kontakt</h2>
+<p>Bei Fragen zum Datenschutz: <a href="mailto:herzfunk-app@gmx.de">herzfunk-app@gmx.de</a></p>
+
+<footer>HerzFunk · Datenschutzerklärung · Stand 07.10.2026</footer>
 
 </body>
 </html>
